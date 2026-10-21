@@ -76,3 +76,28 @@ function steamDemo(){toast('Protótipo: login Steam ainda não está conectado. 
 function toast(t){let el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3500)}
 render();
 </script></body></html>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const skinexSupabase = window.supabase.createClient(
+  'https://oghnhanqvdphwlcfsxtw.supabase.co',
+  'sb_publishable_C758PKpWqPGlhXt_gLbbzQ_lp4SgRMB'
+);
+
+async function testarConexaoSkinEX() {
+  const { data, error } = await skinexSupabase
+    .from('skins')
+    .select('id, name, weapon, rarity, price_brl');
+
+  if (error) {
+    console.error('Erro ao conectar SkinEX:', error.message);
+    alert('A conexão falhou: ' + error.message);
+    return;
+  }
+
+  console.log('Skins recebidas do Supabase:', data);
+  alert('Conexão realizada! Skins encontradas: ' + data.length);
+}
+
+testarConexaoSkinEX();
+</script>
+
