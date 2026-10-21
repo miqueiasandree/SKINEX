@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkinEX — Trocas justas de CS2</title>
+<style>
+:root{--bg:#070d12;--panel:#0d171f;--panel2:#101e28;--line:#203441;--text:#edf6fb;--muted:#9eb2bf;--green:#35e69a;--green2:#13b879;--red:#ff6b7d;--gold:#ffc56a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 45% -20%,#17313a 0,transparent 45%),var(--bg);color:var(--text);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px clamp(18px,4vw,56px);border-bottom:1px solid var(--line);background:#081117e8;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
+.logo{font-size:25px;font-weight:900;letter-spacing:1px}.logo span{color:var(--green)}.tag{font-size:11px;color:var(--muted);margin-top:-3px}
+button{border:0;cursor:pointer;font-weight:750;border-radius:10px;padding:11px 15px;transition:.15s}button:hover{filter:brightness(1.1);transform:translateY(-1px)}.primary{background:var(--green);color:#052015}.ghost{background:#14232d;color:var(--text);border:1px solid var(--line)}.small{font-size:12px;padding:7px 10px}
+main{max-width:1440px;margin:auto;padding:24px clamp(14px,3vw,38px) 50px}
+.hero{border:1px solid var(--line);border-radius:18px;padding:clamp(22px,4vw,42px);background:linear-gradient(110deg,#102b2c 0%,#0d1a23 56%,#0a121a 100%);display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:center}
+.eyebrow{color:var(--green);font-weight:800;text-transform:uppercase;font-size:12px;letter-spacing:1.5px}h1{font-size:clamp(28px,4vw,46px);line-height:1.08;margin:10px 0 14px;max-width:700px}h1 em{font-style:normal;color:var(--green)}.hero p{color:#c0d0d9;max-width:650px}.hero-note{background:#08141acc;border:1px solid #27424b;border-radius:14px;padding:18px}.hero-note strong{color:var(--green);font-size:18px}.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.pill{font-size:12px;border:1px solid #2c4b51;border-radius:30px;padding:7px 11px;color:#d2e6e8}
+.section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 0 14px}.section-title h2{margin:0;font-size:22px}.muted{color:var(--muted);font-size:13px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px}.trade-area{min-width:0}.trade-grid{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);gap:12px;align-items:stretch}
+.trade-panel,.side-panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:14px}.panel-head h3{font-size:16px;margin:0}.total{font-size:12px;color:var(--muted);white-space:nowrap}.total b{color:var(--green);font-size:15px}
+.items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.skin{background:linear-gradient(145deg,#14232d,#0b141c);border:1px solid #263d49;border-radius:11px;padding:10px;position:relative;min-width:0;cursor:pointer;min-height:145px;display:flex;flex-direction:column;justify-content:space-between}.skin.selected{border-color:var(--green);box-shadow:0 0 0 1px #35e69a55 inset}.skin.selected:after{content:'✓';position:absolute;right:8px;top:8px;background:var(--green);color:#042115;border-radius:50%;width:21px;height:21px;text-align:center;font-weight:900}.weapon{height:68px;display:flex;align-items:center;justify-content:center;font-size:38px;filter:drop-shadow(0 5px 6px #0008)}.skin-name{font-size:12px;font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.skin-condition{font-size:10px;color:var(--muted)}.price{font-size:13px;color:var(--green);font-weight:800;margin-top:5px}.swap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);text-align:center;font-size:11px}.swap button{width:54px;height:54px;border-radius:50%;font-size:25px;background:#112b2c;color:var(--green);border:1px solid #285b58}
+.panel-actions{display:flex;gap:8px;margin-top:13px}.panel-actions button{flex:1}.balance{margin-top:14px;border-radius:10px;padding:12px;background:#0a211a;border:1px solid #1c6046;font-size:13px}.balance.warning{background:#28171c;border-color:#6e2e3a}.balance strong{color:var(--green)}.balance.warning strong{color:var(--red)}
+.side-panel h3{margin:2px 0 14px}.rule{padding:14px 0;border-bottom:1px solid var(--line)}.rule:last-child{border:0}.rule b{display:block;color:var(--green);margin-bottom:4px}.rule p{margin:0;color:var(--muted);font-size:12px}.fee-control{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#0a141b;border:1px solid var(--line);border-radius:10px;margin-top:14px}.fee-control input{width:72px;background:#071016;color:var(--green);border:1px solid #31514e;border-radius:8px;padding:8px;font-weight:800}
+.market-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.market-grid .skin{min-height:130px}.market-grid .weapon{font-size:30px;height:55px}.market-grid .skin-name{font-size:11px}
+.disclaimer{margin-top:20px;padding:13px 15px;border:1px solid #3f3a26;background:#201d13;border-radius:10px;color:#d6c9a6;font-size:12px}.toast{position:fixed;bottom:20px;right:20px;background:#122820;border:1px solid #287a54;padding:13px 17px;border-radius:10px;display:none;z-index:9}
+footer{border-top:1px solid var(--line);padding:22px clamp(18px,4vw,56px);color:var(--muted);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;font-size:12px}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.market-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.side-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}.side-panel h3,.fee-control{grid-column:1/-1}}
+@media(max-width:700px){header{padding:14px}.hero{grid-template-columns:1fr}.hero-note{display:none}.trade-grid{grid-template-columns:1fr}.swap{flex-direction:row;padding:5px}.swap button{width:42px;height:42px}.items{grid-template-columns:repeat(2,minmax(0,1fr))}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.side-panel{display:block}.panel-head{align-items:flex-start;flex-direction:column}.total{white-space:normal}}
+</style>
+</head>
+<body>
+<header><div><div class="logo">◢ SKIN<span>EX</span></div><div class="tag">Troque com justiça. Ganhe de verdade.</div></div><button class="primary" onclick="steamDemo()">◉ Conectar via Steam</button></header>
+<main>
+<section class="hero"><div><div class="eyebrow">Trocas transparentes para CS2</div><h1>Suas skins valem o que <em>realmente valem.</em></h1><p>Troque com outros jogadores usando preços de referência claros. Taxa baixa, exibida antes de confirmar — sem inflar o preço do item que você quer receber.</p><div class="pills"><span class="pill">✓ Taxa visível</span><span class="pill">✓ Sem preço inflado pela plataforma</span><span class="pill">✓ Você confere antes de aceitar</span></div></div><div class="hero-note"><div class="eyebrow">Nosso compromisso</div><p>O site ganha uma pequena taxa de serviço. Você e a outra pessoa veem a mesma referência de preço e o custo total da operação.</p><strong>5% de taxa demonstrativa</strong><div class="muted">Configuração de exemplo — ainda não é uma cobrança real.</div></div></section>
+
+<div class="section-title"><div><h2>Monte sua troca</h2><div class="muted">Clique nas skins para selecionar ou remover da oferta.</div></div><button class="ghost small" onclick="resetTrade()">↺ Reiniciar</button></div>
+<div class="layout"><div class="trade-area"><div class="trade-grid">
+<section class="trade-panel"><div class="panel-head"><h3>◉ Você oferece</h3><div class="total">Total: <b id="offerTotal">R$ 0,00</b></div></div><div class="items" id="offerItems"></div><div class="panel-actions"><button class="ghost small" onclick="clearSide('offer')">Limpar seleção</button></div></section>
+<div class="swap"><button onclick="swapSides()" title="Trocar lados">⇄</button><span>Troca direta</span></div>
+<section class="trade-panel"><div class="panel-head"><h3>⇄ Você recebe</h3><div class="total">Total: <b id="wantTotal">R$ 0,00</b></div></div><div class="items" id="wantItems"></div><div class="panel-actions"><button class="ghost small" onclick="clearSide('want')">Limpar seleção</button></div></section>
+</div><div id="balance" class="balance">Selecione skins dos dois lados para calcular a diferença e a taxa.</div>
+<div class="section-title"><div><h2>Skins de referência</h2><div class="muted">Valores fictícios para demonstrar a interface — não são cotações ao vivo.</div></div></div><div class="market-grid" id="market"></div>
+<div class="disclaimer"><b>Importante:</b> este é um protótipo visual e interativo. Ainda não está conectado à Steam, ao inventário real, a preços de mercado em tempo real ou a um sistema de pagamentos. Não envie credenciais Steam neste protótipo.</div></div>
+<aside class="side-panel"><h3>Como garantimos uma troca justa</h3><div class="rule"><b>1. Uma referência para todos</b><p>O mesmo valor de referência é mostrado para quem oferece e para quem recebe.</p></div><div class="rule"><b>2. Taxa separada do preço</b><p>A taxa aparece como uma linha separada. O preço da skin não é alterado para escondê-la.</p></div><div class="rule"><b>3. Conferência antes de aceitar</b><p>Veja itens, valores, taxa e diferença antes de qualquer confirmação.</p></div><div class="rule"><b>4. Segurança primeiro</b><p>Uma versão real precisará de integração segura, proteção contra golpes e revisão das regras da Steam.</p></div><div class="fee-control"><label for="fee">Taxa de serviço (%)</label><input id="fee" type="number" min="0" max="5" step="0.1" value="5" onchange="renderTotals()"></div><p class="muted">Altere a taxa para simular o custo. O valor não é cobrado de verdade.</p></aside></div>
+</main>
+<footer><div><b style="color:#edf6fb">◢ SKINEX</b><br>Trocas justas começam com transparência.</div><div>Protótipo demonstrativo · Sem conexão com Steam</div><div>Preços de exemplo em reais (BRL)</div></footer><div class="toast" id="toast"></div>
+<script>
+const skins=[
+{id:1,name:'AK-47 | Asiimov',condition:'Field-Tested',price:643.20,icon:'🔫',side:'offer'},
+{id:2,name:'AWP | Hyper Beast',condition:'Minimal Wear',price:298.70,icon:'🎯',side:'offer'},
+{id:3,name:'M4A1-S | Player Two',condition:'Field-Tested',price:187.35,icon:'🟦',side:'offer'},
+{id:4,name:'Desert Eagle | Crimson Web',condition:'Minimal Wear',price:68.40,icon:'🔴',side:'offer'},
+{id:5,name:'USP-S | Kill Confirmed',condition:'Field-Tested',price:51.10,icon:'🔫',side:'offer'},
+{id:6,name:'AWP | Dragon Lore',condition:'Field-Tested',price:1220.50,icon:'🐉',side:'want'},
+{id:7,name:'M4A4 | Howl',condition:'Field-Tested',price:1118.90,icon:'🔥',side:'want'},
+{id:8,name:'Karambit | Doppler',condition:'Factory New',price:1086.40,icon:'🔪',side:'want'},
+{id:9,name:'Desert Eagle | Printstream',condition:'Minimal Wear',price:402.70,icon:'⚪',side:'want'},
+{id:10,name:'USP-S | The Traitor',condition:'Minimal Wear',price:378.60,icon:'🟥',side:'want'},
+{id:11,name:'AK-47 | Fire Serpent',condition:'Field-Tested',price:985.20,icon:'🐍',side:'market'},
+{id:12,name:'AWP | Medusa',condition:'Field-Tested',price:892.70,icon:'🌊',side:'market'},
+{id:13,name:'M4A1-S | Golden Coil',condition:'Minimal Wear',price:760.40,icon:'✨',side:'market'},
+{id:14,name:'Sport Gloves | Pandora',condition:'Field-Tested',price:742.30,icon:'🧤',side:'market'},
+{id:15,name:'Butterfly Knife | Fade',condition:'Factory New',price:638.90,icon:'🦋',side:'market'},
+{id:16,name:'AK-47 | Neon Rider',condition:'Minimal Wear',price:315.80,icon:'🌈',side:'market'},
+{id:17,name:'Glock-18 | Water Elemental',condition:'Field-Tested',price:94.20,icon:'💧',side:'market'},
+{id:18,name:'P90 | Asiimov',condition:'Field-Tested',price:83.60,icon:'⚡',side:'market'}
+];
+let offer=new Set([1,2,3,4,5]),want=new Set([6,7,8,9,10]);
+const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function skinCard(s,selected,side){return `<div class="skin ${selected?'selected':''}" onclick="toggle(${s.id},'${side}')"><div class="weapon">${s.icon}</div><div><div class="skin-name" title="${s.name}">${s.name}</div><div class="skin-condition">${s.condition}</div><div class="price">${money(s.price)}</div></div></div>`}
+function render(){document.getElementById('offerItems').innerHTML=skins.filter(s=>s.side==='offer').map(s=>skinCard(s,offer.has(s.id),'offer')).join('');document.getElementById('wantItems').innerHTML=skins.filter(s=>s.side==='want').map(s=>skinCard(s,want.has(s.id),'want')).join('');document.getElementById('market').innerHTML=skins.filter(s=>s.side==='market').map(s=>skinCard(s,offer.has(s.id)||want.has(s.id),'market')).join('');renderTotals()}
+function toggle(id,side){if(side==='market'){side=offer.size<=want.size?'offer':'want'}let set=side==='offer'?offer:want;if(set.has(id))set.delete(id);else set.add(id);render()}
+function total(set){return skins.filter(s=>set.has(s.id)).reduce((a,s)=>a+s.price,0)}
+function renderTotals(){let a=total(offer),b=total(want),fee=Math.max(0,Math.min(5,Number(document.getElementById('fee').value)||0))/100;document.getElementById('offerTotal').textContent=money(a);document.getElementById('wantTotal').textContent=money(b);let feeVal=b*fee,diff=b-a;let el=document.getElementById('balance');if(!offer.size||!want.size){el.className='balance';el.innerHTML='Selecione skins dos dois lados para calcular a diferença e a taxa.';return}el.className='balance'+(diff>0?' warning':'');el.innerHTML=`<div>Valor oferecido: <strong>${money(a)}</strong> · Valor recebido: <strong>${money(b)}</strong></div><div style="margin-top:6px">Taxa demonstrativa (${(fee*100).toLocaleString('pt-BR')}% sobre o lado recebido): <strong>${money(feeVal)}</strong></div><div style="margin-top:6px">${diff>0?'Diferença de valor: '+money(diff):diff<0?'Você oferece '+money(Math.abs(diff))+' a mais em valor de referência.':'Os valores de referência estão equilibrados.'}</div><div class="muted" style="margin-top:6px">A taxa é mostrada separadamente; nenhum preço de skin foi inflado.</div>`}
+function clearSide(side){(side==='offer'?offer:want).clear();render()}
+function resetTrade(){offer=new Set();want=new Set();render()}
+function swapSides(){let old=offer;offer=want;want=old;render()}
+function steamDemo(){toast('Protótipo: login Steam ainda não está conectado. Não insira sua senha aqui.')}
+function toast(t){let el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3500)}
+render();
+</script></body></html>
