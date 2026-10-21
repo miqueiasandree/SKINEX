@@ -75,7 +75,8 @@ function swapSides(){let old=offer;offer=want;want=old;render()}
 function steamDemo(){toast('Protótipo: login Steam ainda não está conectado. Não insira sua senha aqui.')}
 function toast(t){let el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',3500)}
 render();
-</script></body></html>
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const skinexSupabase = window.supabase.createClient(
@@ -83,21 +84,31 @@ const skinexSupabase = window.supabase.createClient(
   'sb_publishable_C758PKpWqPGlhXt_gLbbzQ_lp4SgRMB'
 );
 
-async function testarConexaoSkinEX() {
+async function carregarSkinsDoSupabase() {
   const { data, error } = await skinexSupabase
     .from('skins')
-    .select('id, name, weapon, rarity, price_brl');
+    .select('id,name,weapon,rarity,price_brl');
 
   if (error) {
-    console.error('Erro ao conectar SkinEX:', error.message);
-    alert('A conexão falhou: ' + error.message);
+    console.error('Erro ao carregar skins:', error);
     return;
   }
 
-  console.log('Skins recebidas do Supabase:', data);
-  alert('Conexão realizada! Skins encontradas: ' + data.length);
+  data.forEach((item, index) => {
+    skins.push({
+      id: 1000 + index,
+      name: item.name,
+      condition: item.rarity || 'Skin do banco de dados',
+      price: Number(item.price_brl) || 0,
+      icon: '🔫',
+      side: 'market'
+    });
+  });
+
+  render();
 }
 
-testarConexaoSkinEX();
+carregarSkinsDoSupabase();
 </script>
+</body></html>
 
